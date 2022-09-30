@@ -10,6 +10,6 @@ public class HelloWord {
 
     @GetMapping
     public String helloword(){
-        return "Olá Mundo. Desafio";
+        return "Olá Mundo. Desafio Quebéc";
     }
 }
