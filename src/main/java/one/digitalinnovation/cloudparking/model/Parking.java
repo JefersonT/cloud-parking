@@ -1,6 +1,7 @@
 package one.digitalinnovation.cloudparking.model;
 
 import lombok.Data;
+import lombok.Value;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

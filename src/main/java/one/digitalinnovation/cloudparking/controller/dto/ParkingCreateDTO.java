@@ -1,22 +1,16 @@
 package one.digitalinnovation.cloudparking.controller.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.swagger.v3.oas.annotations.Hidden;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ParkingDTO {
-    private Integer id;
+public class ParkingCreateDTO {
     private String license;
     private String state;
     private String model;
     private String color;
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
-    private LocalDateTime entryDate;
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
-    private LocalDateTime exitDate;
-    private Double bill;
 }

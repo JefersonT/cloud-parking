@@ -6,8 +6,8 @@ import one.digitalinnovation.cloudparking.service.ParkingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ParkingServiceImpl implements ParkingService {
@@ -20,18 +20,23 @@ public class ParkingServiceImpl implements ParkingService {
     }
 
     @Override
-    public Optional<Parking> findById(Integer id) {
-        return parkingRepository.findById(id);
+    public Parking findById(Integer id) {
+        Parking parking = parkingRepository.findById(id).orElse(null);
+        if (parking == null){
+            throw new ParkingNotFoundException(id);
+        }
+        return parking;
     }
 
     @Override
-    public void createParking(Parking parking) {
-        parkingRepository.save(parking);
+    public Parking createParking(Parking parking) {
+        parking.setEntryDate(LocalDateTime.now());
+        return parkingRepository.save(parking);
     }
 
     @Override
-    public void updateParking(Parking parking) {
-        parkingRepository.save(parking);
+    public Parking updateParking(Parking parking) {
+        return parkingRepository.save(parking);
     }
 
     @Override
