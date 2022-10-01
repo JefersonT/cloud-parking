@@ -9,5 +9,6 @@ public interface ParkingService {
     Parking findById(Integer id);
     Parking createParking(Parking parking);
     Parking updateParking(Parking parking);
+    Parking exit(Integer id);
     void deleteParking(Integer id);
 }

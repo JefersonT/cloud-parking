@@ -3,10 +3,7 @@ package one.digitalinnovation.cloudparking.model;
 import lombok.Data;
 import lombok.Value;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
@@ -22,5 +19,7 @@ public class Parking {
     private String color;
     private LocalDateTime entryDate;
     private LocalDateTime exitDate;
+
+    @Column(columnDefinition = "Decimal(10,2)")
     private Double bill;
 }

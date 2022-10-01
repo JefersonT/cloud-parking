@@ -40,6 +40,22 @@ public class ParkingServiceImpl implements ParkingService {
     }
 
     @Override
+    public Parking exit(Integer id) {
+        Parking parking = parkingRepository.findById(id).orElse(null);
+        if (parking == null){
+            throw new ParkingNotFoundException(id);
+        }
+        parking.setExitDate(LocalDateTime.now());
+        var bill = 1.0;
+        var hours = parking.getExitDate().getHour() - parking.getEntryDate().getHour();
+        if (hours >= 1){
+            bill += (hours * 60) * 0.2;
+        }
+        parking.setBill(bill);
+        return parkingRepository.save(parking);
+    }
+
+    @Override
     public void deleteParking(Integer id) {
         parkingRepository.deleteById(id);
     }
