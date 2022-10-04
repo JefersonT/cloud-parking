@@ -12,7 +12,7 @@ import org.springframework.http.MediaType;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class ParkingControllerIT {
+class ParkingControllerIT extends AbstractContainerBase {
 
     @LocalServerPort
     private int randomPort;
@@ -25,6 +25,8 @@ class ParkingControllerIT {
     @Test
     void whenFindAllThenCheckResult() {
         RestAssured.given()
+                .auth()
+                .basic("user", "dio@123456")
                 .when()
                 .get("/parking")
                 .then()
@@ -41,6 +43,8 @@ class ParkingControllerIT {
         createDTO.setState("CE");
 
         RestAssured.given()
+                .auth()
+                .basic("user", "dio@123456")
                 .when()
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .body(createDTO)
